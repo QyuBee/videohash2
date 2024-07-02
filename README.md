@@ -1,19 +1,19 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/akamhy/videohash/main/assets/logo/logo-optimized.svg"><br>
+<img src="https://raw.githubusercontent.com/demmenie/videohash/main/assets/logo/logo-optimized.svg"><br>
 </div>
 
 <h2 align="center"> The Python package for near duplicate video detection </h2>
 
 <p align="center">
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AUbuntu"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/Ubuntu/badge.svg"></a>
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AWindows"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/Windows/badge.svg"></a>
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AmacOS"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/macOS/badge.svg"></a>
+<a href="https://github.com/demmenie/videohash/actions?query=workflow%3AUbuntu"><img alt="Build Status" src="https://github.com/demmenie/videohash/workflows/Ubuntu/badge.svg"></a>
+<a href="https://github.com/demmenie/videohash/actions?query=workflow%3AWindows"><img alt="Build Status" src="https://github.com/demmenie/videohash/workflows/Windows/badge.svg"></a>
+<a href="https://github.com/demmenie/videohash/actions?query=workflow%3AmacOS"><img alt="Build Status" src="https://github.com/demmenie/videohash/workflows/macOS/badge.svg"></a>
 <a href="https://codecov.io/gh/akamhy/videohash"><img alt="codecov" src="https://codecov.io/gh/akamhy/videohash/branch/main/graph/badge.svg"></a>
 <a href="https://lgtm.com/projects/g/akamhy/videohash/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/akamhy/videohash.svg?logo=lgtm&logoWidth=18"></a>
 <a href="https://lgtm.com/projects/g/akamhy/videohash/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/akamhy/videohash.svg?logo=lgtm&logoWidth=18"></a>
 <a href="https://pypi.org/project/videohash/"><img alt="pypi" src="https://img.shields.io/pypi/v/videohash.svg"></a>
 <a href="https://pepy.tech/project/videohash?versions=1*&versions=2*&versions=3*"><img alt="Downloads" src="https://pepy.tech/badge/videohash/month"></a>
-<a href="https://github.com/akamhy/videohash/commits/main"><img alt="GitHub lastest commit" src="https://img.shields.io/github/last-commit/akamhy/videohash?color=blue&style=flat-square"></a>
+<a href="https://github.com/demmenie/videohash/commits/main"><img alt="GitHub lastest commit" src="https://img.shields.io/github/last-commit/akamhy/videohash?color=blue&style=flat-square"></a>
 <a href="#"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/videohash?style=flat-square"></a>
 </p>
 
@@ -66,10 +66,10 @@ Maintainer is  [@step21](https://github.com/step21)
 conda install -c conda-forge videohash
 ```
 
-**Install directly from [the](https://github.com/akamhy/videohash) GitHub repository (NOT recommended)**:
+**Install directly from [the](https://github.com/demmenie/videohash) GitHub repository (NOT recommended)**:
 
 ```bash
-pip install git+https://github.com/akamhy/videohash.git
+pip install git+https://github.com/demmenie/videohash.git
 ```
 
 --------------------------------------------------------------------------
@@ -117,7 +117,7 @@ True
 34
 >>> videohash3-videohash2
 34
->>> path4 = "/home/akamhy/Downloads/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4"
+>>> path4 = "/home/demmenie/Downloads/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4"
 >>> videohash4 = VideoHash(path=path4)
 >>> videohash4 == videohash1
 True
@@ -152,12 +152,12 @@ False
   
 ### License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/akamhy/videohash/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/demmenie/videohash/blob/main/LICENSE)
 
 Copyright (c) 2021-2022 Akash Mahanty. See
-[license](https://github.com/akamhy/videohash/blob/main/LICENSE) for details.
+[license](https://github.com/demmenie/videohash/blob/main/LICENSE) for details.
 
-The VideoHash logo was created by [iconolocode](https://github.com/iconolocode). See [license](https://github.com/akamhy/videohash/blob/main/assets/logo/LICENSE-LOGO) for details.
+The VideoHash logo was created by [iconolocode](https://github.com/iconolocode). See [license](https://github.com/demmenie/videohash/blob/main/assets/logo/LICENSE-LOGO) for details.
 
 Videos are from NASA and are in the public domain.
 > NASA copyright policy states that "NASA material is not protected by copyright unless noted".
