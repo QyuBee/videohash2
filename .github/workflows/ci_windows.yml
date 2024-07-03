@@ -28,7 +28,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-test.txt
         pip install -U setuptools wheel
-        python assets/ffmpeg-installer/install_ffmpeg.py
+        python assets/install_ffmpeg.py
         $env:Path += ";D:\a\videohash2\videohash2"
         ffmpeg -version
     - name: Build test the package
