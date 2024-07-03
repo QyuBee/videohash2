@@ -36,4 +36,4 @@ jobs:
         python setup.py sdist bdist_wheel
     - name: Test with pytest
       run: |
-        pytest --cov=videohash tests/ -v
+        pytest --cov=videohash2 tests/ -v
