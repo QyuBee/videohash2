@@ -30,6 +30,8 @@ jobs:
         pip install -U setuptools wheel
         python assets/install_ffmpeg.py
         $env:Path += ";D:\a\videohash2\videohash2"
+    - name: Check FFmpeg is installed properly
+      run: |
         ffmpeg -version
     - name: Build test the package
       run: |
