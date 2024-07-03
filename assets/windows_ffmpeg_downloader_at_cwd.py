@@ -1,18 +1,8 @@
 import os
 import sys
-import importlib.util
 import shutil
 import tempfile
 from pathlib import Path
-
-currentDir = os.path.dirname(sys.executable)
-modDir = currentDir + "\Tools\scripts\win_add2path.py"
-spec = importlib.util.spec_from_file_location("add2path", modDir)
-add2path = importlib.util.module_from_spec(spec)
-sys.modules["add2path"] = add2path
-spec.loader.exec_module(add2path)
-
-add2path.main()
 
 import requests
 from pyunpack import Archive
