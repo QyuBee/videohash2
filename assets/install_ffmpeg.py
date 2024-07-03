@@ -242,13 +242,11 @@ def add_path_to_environment(path):
     print('\n\n')
     print(command)
     print()
-    if input('Would you like to run the above command in PowerShell to add FFMPEG to your PATH? (Y/n) ').lower() == 'y':
-        try:
-            subprocess.check_output(['powershell', command])
-        except subprocess.CalledProcessError as e:
-            print(e.stdout.decode())
-    else:
-        print('User input was not "Y". Command not run')
+    try:
+        subprocess.check_output(['powershell', command])
+    except subprocess.CalledProcessError as e:
+        print(e.stdout.decode())
+    
 
 
 BUILDS = {
