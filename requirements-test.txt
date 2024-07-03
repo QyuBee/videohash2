@@ -2,7 +2,7 @@ requests
 pytest
 pytest-cov
 codecov
-patool
+patoolib
 pyunpack
 flake8
 mypy
