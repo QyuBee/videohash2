@@ -28,9 +28,8 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-test.txt
         pip install -U setuptools wheel
-        pip install patool
         python assets/windows_ffmpeg_downloader_at_cwd.py
-        $env:Path += ";D:\a\videohash\videohash"
+        $env:Path += ";D:\a\videohash2\videohash2"
         ffmpeg -version
     - name: Build test the package
       run: |
