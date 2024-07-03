@@ -9,7 +9,7 @@
 <a href="https://github.com/demmenie/videohash2/actions?query=workflow%3AWindows"><img alt="Build Status" src="https://github.com/demmenie/videohash2/workflows/Windows/badge.svg"></a>
 <a href="https://github.com/demmenie/videohash2/actions?query=workflow%3AmacOS"><img alt="Build Status" src="https://github.com/demmenie/videohash2/workflows/macOS/badge.svg"></a>
 <a href="https://pypi.org/project/videohash2/"><img alt="pypi" src="https://img.shields.io/pypi/v/videohash2.svg"></a>
-<a href="https://pepy.tech/project/videohash?versions=1*&versions=2*&versions=3*"><img alt="Downloads" src="https://pepy.tech/badge/videohash/"></a>
+<a href="https://pepy.tech/project/videohash?versions=1*&versions=2*&versions=3*"><img alt="Downloads" src="https://pepy.tech/badge/videohash"></a>
 <a href="https://github.com/demmenie/videohash2/commits/main"><img alt="GitHub lastest commit" src="https://img.shields.io/github/last-commit/demmenie/videohash2?color=blue&style=flat-square"></a>
 <a href="#"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/videohash2?style=flat-square"></a>
 </p>
@@ -19,17 +19,17 @@
 # <img src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" width="30"></img> Introduction
 
 Videohash2 is a [Python package](https://www.udacity.com/blog/2021/01/what-is-a-python-package.html) for **detecting near-duplicate videos (Perceptual Video Hashing)**.
-It can take any input video and generate a 64-bit equivalent hash value. Videohash is way more faster than comparing the imagehash values of individual [frames](https://en.wikipedia.org/wiki/Film_frame) of the video and more reliable than hashing [keyframes](https://en.wikipedia.org/wiki/Key_frame).
+It can take any input video and generate a 64-bit equivalent hash value. Videohash is way faster than comparing the imagehash values of individual [frames](https://en.wikipedia.org/wiki/Film_frame) of the video and more reliable than hashing [keyframes](https://en.wikipedia.org/wiki/Key_frame).
 
 The video-hash-values for identical or near-duplicate videos are the same or similar, implying that if the video is resized (upscaled/downscaled), [transcoded](https://medium.com/videocoin/what-is-video-transcoding-and-why-do-you-do-it-348a2610cefc), [watermark](https://en.wikipedia.org/wiki/Digital_watermarking) added/removed, [stabilized](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-78414-4_76), [color changed](https://en.wikipedia.org/wiki/Chrominance), [frame rate](https://www.techsmith.com/blog/frame-rate-beginners-guide/) changed, changed [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)),  [cropped](https://www.avs4you.com/blog/trim-cut-crop-avs4you/), [black-bars](https://en.wikipedia.org/wiki/Letterboxing_(filming)) added or removed, the hash-value should remain unchanged or not vary substantially.
 
 ### How the hash values are calculated
 
-> - Every one second, a frame from the input video is extracted, the frames are shrunk to a 144x144 pixel square, a collage is constructed that contains all of the resized frames(square-shaped), the collage's [wavelet hash](https://fullstackml.com/wavelet-image-hash-in-python-3504fdd282b5)'s bit-list is the first bit-list that we use. The frames extracted are now stitched horizontally to each other, and finally divided into 64 equal sized images, the domiant color of these 64 images are detected and compared with a pre-defined pattern of dominant colors, if they match the bit is set else unset. So now we have two bitlist, finally we bitwise XOR these two bitlists. The XOR'ed output is  used to generate the final 64 bit hash-value for the video. The bits are joined to form the 64 bit hash-value of the  input value.
+> - Every one second, a frame from the input video is extracted, the frames are shrunk to a 144x144 pixel square, a collage is constructed that contains all of the resized frames(square-shaped), the collage's [wavelet hash](https://fullstackml.com/wavelet-image-hash-in-python-3504fdd282b5)'s bit-list is the first bit-list that we use. The frames extracted are now stitched horizontally to each other, and finally divided into 64 equal sized images, the dominant color of these 64 images are detected and compared with a pre-defined pattern of dominant colours, if they match the bit is set else unset. So now we have two bitlists, finally we bitwise XOR these two bitlists. The XOR'ed output is  used to generate the final 64 bit hash-value for the video. The bits are joined to form the 64 bit hash-value of the  input value.
 
 ### When not to use Videohash
 
-> - Videohash cannot be used to verify whether one video is a part of another (video fingerprinting). If the video is reversed or rotated by a substantial angle (greater than 10 degrees), Videohash will not provide the same or similar hash result, but you can always reverse the video manually and generate the hash value for reversed video.
+> - Videohash cannot be used to verify whether one video is part of another (video fingerprinting). If the video is reversed or rotated by a substantial angle (greater than 10 degrees), Videohash will not provide the same or similar hash result, but you can always reverse the video manually and generate the hash value for reversed video.
 
 ### How to compare the video hash values stored in a database
 
@@ -41,7 +41,7 @@ The video-hash-values for identical or near-duplicate videos are the same or sim
 
 To use this software, you must have [FFmpeg](https://ffmpeg.org/) installed. Please read [how to install FFmpeg](https://github.com/akamhy/videohash/wiki/Install-FFmpeg,-but-how%3F) if you don't already know how.
 
-#### Install videohash
+#### Install videohash2
 
 Upgrade pip
 ```bash
