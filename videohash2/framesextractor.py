@@ -18,7 +18,6 @@ from .utils import does_path_exists
 
 
 class FramesExtractor:
-
     """
     Extract frames from the input video file and save at the output directory(frame storage directory).
     """

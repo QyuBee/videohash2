@@ -29,11 +29,11 @@ jobs:
         pip install -r requirements-test.txt
         pip install -U setuptools wheel
         python assets/windows_ffmpeg_downloader_at_cwd.py
-        $env:Path += ";D:\a\videohash\videohash"
+        $env:Path += ";D:\a\videohash2\videohash2"
         ffmpeg -version
     - name: Build test the package
       run: |
         python setup.py sdist bdist_wheel
     - name: Test with pytest
       run: |
-        pytest --cov=videohash tests/ -v
+        pytest --cov=videohash2 tests/ -v

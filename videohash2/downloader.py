@@ -9,7 +9,6 @@ from .utils import does_path_exists, get_list_of_all_files_in_dir
 
 
 class Download:
-
     """
     Class that downloads the video prior to frames extraction.
 

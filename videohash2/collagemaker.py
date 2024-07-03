@@ -12,7 +12,6 @@ from .utils import does_path_exists
 
 
 class MakeCollage:
-
     """
     Class that creates the collage from list of images.
 
@@ -180,7 +179,8 @@ class MakeCollage:
 
             # scale the opened frame images
             frame.thumbnail(
-                (scaled_frame_image_width, scaled_frame_image_height), Image.ANTIALIAS
+                (scaled_frame_image_width, scaled_frame_image_height),
+                Image.Resampling.LANCZOS,
             )
 
             # set the value of x to that of i's value.

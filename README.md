@@ -1,27 +1,24 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/akamhy/videohash/main/assets/logo/logo-optimized.svg"><br>
+<img src="https://raw.githubusercontent.com/demmenie/videohash2/main/assets/logo/logo-optimized.svg"><br>
 </div>
 
 <h2 align="center"> The Python package for near duplicate video detection </h2>
 
 <p align="center">
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AUbuntu"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/Ubuntu/badge.svg"></a>
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AWindows"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/Windows/badge.svg"></a>
-<a href="https://github.com/akamhy/videohash/actions?query=workflow%3AmacOS"><img alt="Build Status" src="https://github.com/akamhy/videohash/workflows/macOS/badge.svg"></a>
-<a href="https://codecov.io/gh/akamhy/videohash"><img alt="codecov" src="https://codecov.io/gh/akamhy/videohash/branch/main/graph/badge.svg"></a>
-<a href="https://lgtm.com/projects/g/akamhy/videohash/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/akamhy/videohash.svg?logo=lgtm&logoWidth=18"></a>
-<a href="https://lgtm.com/projects/g/akamhy/videohash/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/akamhy/videohash.svg?logo=lgtm&logoWidth=18"></a>
-<a href="https://pypi.org/project/videohash/"><img alt="pypi" src="https://img.shields.io/pypi/v/videohash.svg"></a>
-<a href="https://pepy.tech/project/videohash?versions=1*&versions=2*&versions=3*"><img alt="Downloads" src="https://pepy.tech/badge/videohash/month"></a>
-<a href="https://github.com/akamhy/videohash/commits/main"><img alt="GitHub lastest commit" src="https://img.shields.io/github/last-commit/akamhy/videohash?color=blue&style=flat-square"></a>
-<a href="#"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/videohash?style=flat-square"></a>
+<a href="https://github.com/demmenie/videohash2/actions?query=workflow%3AUbuntu"><img alt="Build Status" src="https://github.com/demmenie/videohash2/workflows/Ubuntu/badge.svg"></a>
+<a href="https://github.com/demmenie/videohash2/actions?query=workflow%3AWindows"><img alt="Build Status" src="https://github.com/demmenie/videohash2/workflows/Windows/badge.svg"></a>
+<a href="https://github.com/demmenie/videohash2/actions?query=workflow%3AmacOS"><img alt="Build Status" src="https://github.com/demmenie/videohash2/workflows/macOS/badge.svg"></a>
+<a href="https://pypi.org/project/videohash2/"><img alt="pypi" src="https://img.shields.io/pypi/v/videohash2.svg"></a>
+<a href="https://pepy.tech/project/videohash?versions=1*&versions=2*&versions=3*"><img alt="Downloads" src="https://pepy.tech/badge/videohash/"></a>
+<a href="https://github.com/demmenie/videohash2/commits/main"><img alt="GitHub lastest commit" src="https://img.shields.io/github/last-commit/demmenie/videohash2?color=blue&style=flat-square"></a>
+<a href="#"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/videohash2?style=flat-square"></a>
 </p>
 
 --------------------------------------------------------------------------
 
 # <img src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" width="30"></img> Introduction
 
-Videohash is a [Python package](https://www.udacity.com/blog/2021/01/what-is-a-python-package.html) for **detecting near-duplicate videos (Perceptual Video Hashing)**.
+Videohash2 is a [Python package](https://www.udacity.com/blog/2021/01/what-is-a-python-package.html) for **detecting near-duplicate videos (Perceptual Video Hashing)**.
 It can take any input video and generate a 64-bit equivalent hash value. Videohash is way more faster than comparing the imagehash values of individual [frames](https://en.wikipedia.org/wiki/Film_frame) of the video and more reliable than hashing [keyframes](https://en.wikipedia.org/wiki/Key_frame).
 
 The video-hash-values for identical or near-duplicate videos are the same or similar, implying that if the video is resized (upscaled/downscaled), [transcoded](https://medium.com/videocoin/what-is-video-transcoding-and-why-do-you-do-it-348a2610cefc), [watermark](https://en.wikipedia.org/wiki/Digital_watermarking) added/removed, [stabilized](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-78414-4_76), [color changed](https://en.wikipedia.org/wiki/Chrominance), [frame rate](https://www.techsmith.com/blog/frame-rate-beginners-guide/) changed, changed [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)),  [cropped](https://www.avs4you.com/blog/trim-cut-crop-avs4you/), [black-bars](https://en.wikipedia.org/wiki/Letterboxing_(filming)) added or removed, the hash-value should remain unchanged or not vary substantially.
@@ -55,21 +52,13 @@ If you do not want to upgrade pip and the installation fails try appending `--pr
 **Install from the [PyPi](https://pypi.org/) (recommended)**:
 
 ```bash
-pip install videohash
+pip install videohash2
 ```
 
-**Using [conda](https://en.wikipedia.org/wiki/Conda_(package_manager)), from [conda-forge](https://anaconda.org/conda-forge/videohash) (recommended)**:
-
-Maintainer is  [@step21](https://github.com/step21)
+**Install directly from [the](https://github.com/demmenie/videohash2) GitHub repository (NOT recommended)**:
 
 ```bash
-conda install -c conda-forge videohash
-```
-
-**Install directly from [the](https://github.com/akamhy/videohash) GitHub repository (NOT recommended)**:
-
-```bash
-pip install git+https://github.com/akamhy/videohash.git
+pip install git+https://github.com/demmenie/videohash2.git
 ```
 
 --------------------------------------------------------------------------
@@ -96,7 +85,7 @@ In the following usage example the first two and the fourth instance of VideoHas
 - videohash4 video is a local copy of url1,  <https://user-images.githubusercontent.com/64683866/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4>.
 
 ```python
->>> from videohash import VideoHash
+>>> from videohash2 import VideoHash
 >>> url1 = "https://user-images.githubusercontent.com/64683866/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4"
 >>> videohash1 = VideoHash(url=url1)
 >>> 
@@ -117,7 +106,7 @@ True
 34
 >>> videohash3-videohash2
 34
->>> path4 = "/home/akamhy/Downloads/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4"
+>>> path4 = "/home/demmenie/Downloads/168872267-7c6682f8-7294-4d9a-8a68-8c6f44c06df6.mp4"
 >>> videohash4 = VideoHash(path=path4)
 >>> videohash4 == videohash1
 True
@@ -147,17 +136,18 @@ False
   - [Sam Dobson](https://github.com/samdobson) for [image_slicer](https://github.com/samdobson/image_slicer), videohash incorporates some code from image_slicer.
   - [Eddievin](https://github.com/Eddievin) for README design.
   - [iconolocode](https://github.com/iconolocode) for the videohash logo.
+  - [Demmenie](https://github.com/demmenie) for forking and maintaining videohash2.
  
 --------------------------------------------------------------------------
   
 ### License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/akamhy/videohash/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/demmenie/videohash2/blob/main/LICENSE)
 
 Copyright (c) 2021-2022 Akash Mahanty. See
-[license](https://github.com/akamhy/videohash/blob/main/LICENSE) for details.
+[license](https://github.com/demmenie/videohash2/blob/main/LICENSE) for details.
 
-The VideoHash logo was created by [iconolocode](https://github.com/iconolocode). See [license](https://github.com/akamhy/videohash/blob/main/assets/logo/LICENSE-LOGO) for details.
+The VideoHash logo was created by [iconolocode](https://github.com/iconolocode). See [license](https://github.com/demmenie/videohash2/blob/main/assets/logo/LICENSE-LOGO) for details.
 
 Videos are from NASA and are in the public domain.
 > NASA copyright policy states that "NASA material is not protected by copyright unless noted".

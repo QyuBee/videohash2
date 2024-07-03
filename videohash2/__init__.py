@@ -13,7 +13,7 @@ https://github.com/akamhy/videohash
 
 Usage:
 
->>> from videohash import VideoHash
+>>> from videohash2 import VideoHash
 >>> # video: Artemis I Hot Fire Test
 >>> videohash1 = VideoHash(url="https://www.youtube.com/watch?v=PapBjpzRhnA", download_worst=False)
 >>>
@@ -67,7 +67,7 @@ API Reference : https://github.com/akamhy/videohash/wiki/API-Reference
 
 :copyright: (c) 2021 Akash Mahanty
 :license: MIT, see LICENSE for more details.
-:pypi: https://pypi.org/project/videohash/
+:pypi: https://pypi.org/project/videohash2/
 :wiki: https://github.com/akamhy/videohash/wiki
 :cite: https://doi.org/10.5281/zenodo.4448295
 """

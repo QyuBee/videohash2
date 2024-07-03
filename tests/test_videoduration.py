@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from videohash.videoduration import video_duration
+from videohash2.videoduration import video_duration
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 
