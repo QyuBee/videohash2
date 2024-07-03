@@ -8,7 +8,7 @@ from typing import List, Optional, Union
 
 import imagehash
 import numpy as np
-from imagedominantcolor import DominantColor
+from imagedominantcolour import DominantColour
 from PIL import Image
 
 from .collagemaker import MakeCollage
@@ -25,7 +25,6 @@ from .videoduration import video_duration
 
 
 class VideoHash:
-
     """
     VideoHash class provides an interface for computing & comparing the video
     hash values for videos(codec, containers etc) supported by FFmpeg.
@@ -569,15 +568,15 @@ class VideoHash:
 
         self.whash_bitlist: List = []
 
-        self.dominant_color_bitlist: List = []
+        self.dominant_colour_bitlist: List = []
 
         for row in imagehash.whash(self.image).hash.astype(int).tolist():
             self.whash_bitlist.extend(row)
 
-        dominant_color_list = []
+        dominant_colour_list = []
         for file_path in get_list_of_all_files_in_dir(self.tiles_dir):
-            dominantcolor = DominantColor(file_path)
-            dominant_color_list.append(dominantcolor.dominant_color)
+            dominantcolour = DominantColour(file_path)
+            dominant_colour_list.append(dominantcolour.dominant_colour)
 
         pixels = [
             "r",
@@ -648,13 +647,13 @@ class VideoHash:
 
         for i in range(64):
             bit = 0
-            if pixels[i] == dominant_color_list[i]:
+            if pixels[i] == dominant_colour_list[i]:
                 bit = 1
 
-            self.dominant_color_bitlist.append(bit)
+            self.dominant_colour_bitlist.append(bit)
 
         for i in range(64):
-            x = self.dominant_color_bitlist[i]
+            x = self.dominant_colour_bitlist[i]
             y = self.whash_bitlist[i]
 
             if x == y and x == 1:
