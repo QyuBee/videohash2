@@ -5,8 +5,8 @@ import shutil
 import tempfile
 from pathlib import Path
 
-#import requests
-#from pyunpack import Archive
+import requests
+from pyunpack import Archive
 
 currentDir = os.path.dirname(sys.executable)
 modDir = currentDir + "\Tools\scripts\win_add2path.py"
