@@ -32,6 +32,7 @@ jobs:
         $env:Path += ";D:\a\videohash2\videohash2"
     - name: Check FFmpeg is installed properly
       run: |
+        echo %PATH%
         ffmpeg -version
     - name: Build test the package
       run: |
