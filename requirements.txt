@@ -1,4 +1,4 @@
 ImageHash
 Pillow
-imagedominantcolor
+imagedominantcolour
 yt-dlp
