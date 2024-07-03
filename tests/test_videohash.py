@@ -2,9 +2,9 @@ import os
 
 import pytest
 
-from videohash.exceptions import DidNotSupplyPathOrUrl, StoragePathDoesNotExist
-from videohash.utils import create_and_return_temporary_directory
-from videohash.videohash import VideoHash
+from videohash2.exceptions import DidNotSupplyPathOrUrl, StoragePathDoesNotExist
+from videohash2.utils import create_and_return_temporary_directory
+from videohash2.videohash import VideoHash
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 
