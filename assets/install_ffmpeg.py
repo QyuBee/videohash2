@@ -72,7 +72,7 @@ class InstallDirs():
         self.install_path = os.path.join(install_dir, 'FFMPEG')
         self.url = url
         # can't get checksums from github
-        self.hash_url = None if url.startswith('https://github.com') else url + '.sha256'
+        self.hash_url = None if url.startswith("https://github.com") else url + '.sha256'
         self.download_dest = os.path.join(self.install_path, os.path.basename(self.url))
         self.unzip_dest = self.download_dest.rstrip(os.path.splitext(self.download_dest)[-1])
 
