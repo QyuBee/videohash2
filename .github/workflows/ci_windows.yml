@@ -32,9 +32,10 @@ jobs:
     - name: Add videohash to path
       run: |
         echo $env:Path
-        $env:Path += ";C:\FFMPEG\bin"
-        $env:Path += ";D:\a\videohash2\videohash2"
+        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", [System.EnvironmentVariableTarget]::User)
+        [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";D:\a\videohash2\videohash2", [System.EnvironmentVariableTarget]::Machine)
         echo $env:Path
+        ffmpeg -version
     - name: Build test the package
       run: |
         python setup.py sdist bdist_wheel
