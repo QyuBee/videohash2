@@ -29,16 +29,10 @@ jobs:
         pip install -r requirements-test.txt
         pip install -U setuptools wheel
         python assets/install_ffmpeg.py
-    - name: Add videohash to path
+    - name: Build test package and test with pytest
       run: |
-        echo $env:Path
         [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", [System.EnvironmentVariableTarget]::Process)
         [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";D:\a\videohash2\videohash2", [System.EnvironmentVariableTarget]::Process)
-        echo $env:Path
         ffmpeg -version
-    - name: Build test the package
-      run: |
         python setup.py sdist bdist_wheel
-    - name: Test with pytest
-      run: |
         pytest --cov=videohash2 tests/ -v
