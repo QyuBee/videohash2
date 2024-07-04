@@ -31,12 +31,9 @@ jobs:
         python assets/install_ffmpeg.py
     - name: Add videohash to path
       run: |
-        echo "Adding videohash2 to path"
+        $env:Path += ";C:\FFMPEG\bin"
         $env:Path += ";D:\a\videohash2\videohash2"
-        echo "Showing path 1"
         echo $env:Path
-        echo "Showing path 2"
-        echo $PATH
     - name: Build test the package
       run: |
         python setup.py sdist bdist_wheel
