@@ -30,6 +30,9 @@ jobs:
         pip install -U setuptools wheel
         python assets/install_ffmpeg.py
         $env:Path += ";D:\a\videohash2\videohash2"
+        echo $env:Path
+        echo $PATH
+        echo %PATH%
     - name: Build test the package
       run: |
         python setup.py sdist bdist_wheel
