@@ -3,7 +3,7 @@ import re
 import math
 import shlex
 from shutil import which
-from subprocess import PIPE, Popen, check_output
+from subprocess import PIPE, DEVNULL, Popen, check_output
 from typing import Optional, Union
 
 from .exceptions import (
@@ -162,12 +162,12 @@ class FramesExtractor:
 
             command = f'"{ffmpeg_path}" -ss {start_time} -i "{video_path}" -vframes {frames} -vf cropdetect -f null -'
 
-            process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+            process = Popen(shlex.split(command), stdin=DEVNULL, stdout=PIPE, stderr=PIPE)
 
             output, error = process.communicate()
 
             matches = re.findall(
-                r"crop\=[0-9]{1,4}:[0-9]{1,4}:[0-9]{1,4}:[0-9]{1,4}",
+                r"crop\=[1-9][0-9]{0,3}:[1-9][0-9]{0,3}:[0-9]{1,4}:[0-9]{1,4}",
                 (output.decode() + error.decode()),
             )
 
@@ -178,9 +178,9 @@ class FramesExtractor:
         if len(crop_list) > 0:
             mode = max(crop_list, key=crop_list.count)
 
-        crop = " "
+        crop = []
         if mode:
-            crop = f" -vf {mode} "
+            crop = ["-vf", mode]
 
         return crop
 
@@ -209,22 +209,19 @@ class FramesExtractor:
             video_length=video_length
         )
 
-        command = (
-            f'"{ffmpeg_path}"'
-            + " -i "
-            + f'"{video_path}"'
-            + f"{crop}"
-            + " -s 144x144 "
-            + " -r "
-            + str(self.interval)
-            + " "
-            + '"'
-            + output_dir
-            + "video_frame_%07d.jpeg"
-            + '"'
-        )
+        command = [
+            str(ffmpeg_path),
+            "-i",
+            str(video_path),
+            *crop,
+            "-s",
+            "144x144",
+            "-r",
+            str(self.interval),
+            str(output_dir)+"video_frame_%07d.jpeg",
+        ]
 
-        process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+        process = Popen(command, stdin=DEVNULL, stdout=PIPE, stderr=PIPE)
         output, error = process.communicate()
 
         ffmpeg_output = output.decode()
