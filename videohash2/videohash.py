@@ -37,6 +37,7 @@ class VideoHash:
         storage_path: Optional[str] = None,
         download_worst: bool = False,
         frame_interval: Union[int, float] = 1,
+        do_not_copy: bool = True,
     ) -> None:
         """
         :param path: Absolute path of the input video file.
@@ -74,6 +75,7 @@ class VideoHash:
 
         self._storage_path = self.storage_path
         self.download_worst = download_worst
+        self.do_not_copy = do_not_copy
         self.frame_interval = frame_interval
 
         self.task_uid = VideoHash._get_task_uid()
@@ -84,9 +86,12 @@ class VideoHash:
 
         self.video_duration = video_duration(self.video_path)
 
-        FramesExtractor(self.video_path, self.frames_dir,
-                        video_length=self.video_duration,
-                        interval=self.frame_interval)
+        FramesExtractor(
+            self.video_path,
+            self.frames_dir,
+            video_length=self.video_duration,
+            interval=self.frame_interval,
+        )
 
         self.collage_path = os.path.join(self.collage_dir, "collage.jpg")
 
@@ -292,7 +297,10 @@ class VideoHash:
 
             self.video_path = os.path.join(self.video_dir, (f"video.{extension}"))
 
-            shutil.copyfile(self.path, self.video_path)
+            if self.do_not_copy:
+                os.symlink(self.path, self.video_path)
+            else:
+                shutil.copyfile(self.path, self.video_path)
 
         if self.url:
 
@@ -312,7 +320,10 @@ class VideoHash:
 
             self.video_path = f"{self.video_dir}video.{extension}"
 
-            shutil.copyfile(downloaded_file, self.video_path)
+            if self.do_not_copy:
+                os.symlink(downloaded_file, self.video_path)
+            else:
+                shutil.copyfile(downloaded_file, self.video_path)
 
     def _create_required_dirs_and_check_for_errors(self) -> None:
         """
@@ -678,4 +689,3 @@ class VideoHash:
         # the binary value is prefixed with 0b.
         self.hash = f"0b{self.hash}"
         self.hash_hex: str = VideoHash.bin2hex(self.hash)
-
