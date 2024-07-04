@@ -82,7 +82,11 @@ class VideoHash:
 
         self._copy_video_to_video_dir()
 
-        FramesExtractor(self.video_path, self.frames_dir, interval=self.frame_interval)
+        self.video_duration = video_duration(self.video_path)
+
+        FramesExtractor(self.video_path, self.frames_dir,
+                        video_length=self.video_duration,
+                        interval=self.frame_interval)
 
         self.collage_path = os.path.join(self.collage_dir, "collage.jpg")
 
@@ -104,7 +108,6 @@ class VideoHash:
         self.image = Image.open(self.collage_path)
         self.bits_in_hash = 64
         self.similar_percentage = 15
-        self.video_duration = video_duration(self.video_path)
 
         self._calc_hash()
 
@@ -675,3 +678,4 @@ class VideoHash:
         # the binary value is prefixed with 0b.
         self.hash = f"0b{self.hash}"
         self.hash_hex: str = VideoHash.bin2hex(self.hash)
+
