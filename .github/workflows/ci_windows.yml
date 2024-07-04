@@ -31,7 +31,7 @@ jobs:
         python assets/install_ffmpeg.py
     - name: Add videohash to path
       run: |
-        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", "Machine")
+        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", "User")
         [Environment]::SetEnvironmentVariable("Path", $env:Path + ";D:\a\videohash2\videohash2", "Machine")
         $env:PATH += ";D:\a\videohash2\videohash2";
         echo $env:PATH
