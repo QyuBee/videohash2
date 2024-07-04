@@ -32,8 +32,8 @@ jobs:
     - name: Add videohash to path
       run: |
         echo $env:Path
-        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", [System.EnvironmentVariableTarget]::User)
-        [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";D:\a\videohash2\videohash2", [System.EnvironmentVariableTarget]::Machine)
+        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\FFMPEG\bin", [System.EnvironmentVariableTarget]::Process)
+        [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";D:\a\videohash2\videohash2", [System.EnvironmentVariableTarget]::Process)
         echo $env:Path
         ffmpeg -version
     - name: Build test the package
