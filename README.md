@@ -39,7 +39,7 @@ The video-hash-values for identical or near-duplicate videos are the same or sim
 
 ## <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f3d7.png" width="20"></img> Installation
 
-To use this software, you must have [FFmpeg](https://ffmpeg.org/) installed. Please read [how to install FFmpeg](https://github.com/akamhy/videohash/wiki/Install-FFmpeg,-but-how%3F) if you don't already know how.
+To use this software, you must have [FFmpeg](https://ffmpeg.org/) installed. Please read [how to install FFmpeg](https://github.com/demmenie/videohash2/wiki/Install-FFmpeg,-but-how%3F) if you don't already know how.
 
 #### Install videohash2
 
@@ -121,9 +121,9 @@ False
 >>> 
 ```
 
-**Extended Usage** : <https://github.com/akamhy/videohash/wiki/Extended-Usage>
+**Extended Usage** : <https://github.com/demmenie/videohash2/wiki/Extended-Usage>
 
-**API Reference** : <https://github.com/akamhy/videohash/wiki/API-Reference>
+**API Reference** : <https://github.com/demmenie/videohash2/wiki/API-Reference>
 
 --------------------------------------------------------------------------
 
