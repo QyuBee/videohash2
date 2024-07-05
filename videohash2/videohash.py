@@ -37,7 +37,7 @@ class VideoHash:
         storage_path: Optional[str] = None,
         download_worst: bool = False,
         frame_interval: Union[int, float] = 1,
-        do_not_copy: bool = True,
+        do_not_copy: Optional[bool] = True,
     ) -> None:
         """
         :param path: Absolute path of the input video file.
