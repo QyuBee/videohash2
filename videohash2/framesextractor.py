@@ -118,7 +118,7 @@ class FramesExtractor:
         frames: int = 3,
         ffmpeg_path: Optional[str] = None,
         video_length: float = 2
-    ) -> str:
+    ) -> list:
         """
         Detects the the amount of cropping to remove black bars.
 
