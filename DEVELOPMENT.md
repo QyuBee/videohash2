@@ -9,7 +9,9 @@ submitting a pull request.
 ### Testing
 
 Before submitting a pull request, make sure the code passes all the tests and is
-formatted by black:
+formatted by black. I would recommend testing this package in an isolated
+environment, preferably a VM; certainly, avoid doing testing in WSL as it can
+lead to files being erroneously removed / corrupted from your machine.
 
 ```bash
 # Inside the project root (directory containing this file)
