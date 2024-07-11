@@ -1,7 +1,7 @@
 import os
 
 import pytest
-from videohash2.exceptions import DidNotSupplyPathOrUrl, StoragePathDoesNotExist
+from videohash2.exceptions import DidNotSupplyPathOrUrl
 from videohash2.videoduration import video_duration
 from videohash2.utils import create_and_return_temporary_directory
 
@@ -22,7 +22,7 @@ def test_video_duration():
 
     assert (video_duration(path=video_path) - 52.08) < 0.1
 
-    url = "https://github.com/Demmenie/videohash2/blob/main/assets/rocket.mkv"
+    url = "https://raw.githubusercontent.com/demmenie/videohash2/main/assets/rocket.mkv"
 
     assert (video_duration(url=url) - 52.08) < 0.1
 
