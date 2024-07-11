@@ -14,7 +14,6 @@ def test_all():
     source1 = (
         "https://raw.githubusercontent.com/demmenie/videohash2/main/assets/rocket.mkv"
     )
-    print("Hashing source1.")
     videohash1 = VideoHash(url=source1, frame_interval=3)
     hash1 = videohash1.hash
     hash_hex1 = videohash1.hash_hex
@@ -57,7 +56,6 @@ def test_all():
         + "rocket.mkv"
     )
 
-    print("Hashing source2.")
     videohash2 = VideoHash(path=source2, frame_interval=3)
     hash2 = videohash2.hash
     hash_hex2 = videohash2.hash_hex
@@ -66,7 +64,6 @@ def test_all():
 
     source3 = "https://www.youtube.com/watch?v=PapBjpzRhnA"
 
-    print("Hashing source3.")
     videohash3 = VideoHash(url=source3)
     hash3 = videohash3.hash
     hash_hex3 = videohash3.hash_hex

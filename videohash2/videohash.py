@@ -321,8 +321,6 @@ class VideoHash:
         :rtype: NoneType
         """
 
-        print("Deleting path:", self.storage_path)
-
         directory = self.storage_path
 
         if not self._storage_path:
