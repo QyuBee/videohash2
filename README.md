@@ -144,7 +144,7 @@ False
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/demmenie/videohash2/blob/main/LICENSE)
 
-Copyright (c) 2021-2022 Akash Mahanty. See
+Copyright (c) 2024 Akash Mahanty. See
 [license](https://github.com/demmenie/videohash2/blob/main/LICENSE) for details.
 
 The VideoHash logo was created by [iconolocode](https://github.com/iconolocode). See [license](https://github.com/demmenie/videohash2/blob/main/assets/logo/LICENSE-LOGO) for details.
