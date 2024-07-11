@@ -58,6 +58,7 @@ def video_duration(url: Optional[str] = None,
             video_dir,
             video_download_dir,
             do_not_copy=do_not_copy,
+            download_worst=True,
             url=url
         )
 
