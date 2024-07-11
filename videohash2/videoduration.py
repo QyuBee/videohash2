@@ -49,17 +49,17 @@ def video_duration(url: Optional[str] = None,
         ffmpeg_path = str(which("ffmpeg"))
 
     if url:
-        (video_dir, video_download_dir
-        ) = _create_required_dirs_and_check_for_errors(
+        video_dir, video_download_dir = _create_required_dirs_and_check_for_errors(
             url=url,
             storage_path=storage_path
-            )[0:1]
+            )[0:2]
 
         path = _copy_video_to_video_dir(
             video_dir,
             video_download_dir,
-            do_not_copy=do_not_copy
-        )[0]
+            do_not_copy=do_not_copy,
+            url=url
+        )
 
     command = f'"{ffmpeg_path}" -i "{path}"'
     process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)

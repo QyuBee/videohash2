@@ -16,7 +16,7 @@ def _copy_video_to_video_dir(
         do_not_copy: Optional[bool] = True,
         download_worst: bool = False,
         url: Optional[str] = None,
-        path: Optional[str] = None) -> tuple:
+        path: Optional[str] = None) -> str:
     """
     Copy the video from the path to the video directory.
 
@@ -78,7 +78,7 @@ def _copy_video_to_video_dir(
         else:
             shutil.copyfile(downloaded_file, video_path)
 
-    return (video_path, downloaded_file)
+    return video_path
 
 def _create_required_dirs_and_check_for_errors(
         url: Optional[str] = None,
@@ -153,5 +153,4 @@ def _create_required_dirs_and_check_for_errors(
         parents=True, exist_ok=True
     )
 
-    return (video_dir, video_download_dir, frames_dir, tiles_dir, collage_dir, 
-            horizontally_concatenated_image_dir)
+    return video_dir, video_download_dir, frames_dir, tiles_dir, collage_dir, horizontally_concatenated_image_dir

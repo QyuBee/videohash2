@@ -91,8 +91,7 @@ class VideoHash:
             storage_path=self.storage_path
         )
 
-        (self.video_path,
-         self.downloaded_file) = _copy_video_to_video_dir(
+        self.video_path = _copy_video_to_video_dir(
              video_dir=self.video_dir,
              video_download_dir=self.video_download_dir,
              do_not_copy=self.do_not_copy,
@@ -321,6 +320,9 @@ class VideoHash:
 
         :rtype: NoneType
         """
+
+        print("Deleting path:", self.storage_path)
+
         directory = self.storage_path
 
         if not self._storage_path:
