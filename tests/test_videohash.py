@@ -12,10 +12,9 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 def test_all():
 
     source1 = (
-        "https://raw.githubusercontent.com/akamhy/videohash/main/assets/rocket.mkv"
+        "https://raw.githubusercontent.com/demmenie/videohash2/main/assets/rocket.mkv"
     )
     videohash1 = VideoHash(url=source1, frame_interval=3)
-    videohash1.delete_storage_path()
     hash1 = videohash1.hash
     hash_hex1 = videohash1.hash_hex
     assert hash1 == "0b1010100110101001111111111111101101011110101100010000001100000011"
@@ -56,6 +55,7 @@ def test_all():
         + os.path.sep
         + "rocket.mkv"
     )
+
     videohash2 = VideoHash(path=source2, frame_interval=3)
     hash2 = videohash2.hash
     hash_hex2 = videohash2.hash_hex
@@ -63,6 +63,7 @@ def test_all():
     assert hash_hex2 == "0xa9a9fffb5eb10303"
 
     source3 = "https://www.youtube.com/watch?v=PapBjpzRhnA"
+
     videohash3 = VideoHash(url=source3)
     hash3 = videohash3.hash
     hash_hex3 = videohash3.hash_hex
@@ -90,7 +91,7 @@ def test_all():
     assert videohash1 != videohash4
     assert videohash2 != videohash4
     assert videohash3 != videohash4
-    assert videohash3.is_diffrent(videohash4)
+    assert videohash3.is_different(videohash4)
 
     with pytest.raises(ValueError):
         # not padded with 0x
@@ -142,3 +143,6 @@ def test_all():
             create_and_return_temporary_directory(), "file_extension_less_video"
         )
         VideoHash(path=path)
+
+if __name__ == "__main__":
+    test_all()

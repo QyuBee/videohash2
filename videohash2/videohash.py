@@ -1,8 +1,6 @@
 import os
 import random
-import re
 import shutil
-from pathlib import Path
 from math import ceil
 from typing import List, Optional, Union
 
@@ -12,15 +10,16 @@ from imagedominantcolour import DominantColour
 from PIL import Image
 
 from .collagemaker import MakeCollage
-from .downloader import Download
-from .exceptions import DidNotSupplyPathOrUrl, StoragePathDoesNotExist
 from .framesextractor import FramesExtractor
 from .tilemaker import make_tile
 from .utils import (
     create_and_return_temporary_directory,
     does_path_exists,
     get_list_of_all_files_in_dir,
+    _get_task_uid
 )
+from .videocopy import (_create_required_dirs_and_check_for_errors,
+    _copy_video_to_video_dir)
 from .videoduration import video_duration
 
 
@@ -78,13 +77,30 @@ class VideoHash:
         self.do_not_copy = do_not_copy
         self.frame_interval = frame_interval
 
-        self.task_uid = VideoHash._get_task_uid()
+        self.task_uid = _get_task_uid()
 
-        self._create_required_dirs_and_check_for_errors()
+        (self.video_dir,
+         self.video_download_dir,
+         self.frames_dir,
+         self.tiles_dir,
+         self.collage_dir,
+         self.horizontally_concatenated_image_dir
+        ) = _create_required_dirs_and_check_for_errors(
+            url=self.url,
+            path=self.path,
+            storage_path=self.storage_path
+        )
 
-        self._copy_video_to_video_dir()
+        self.video_path = _copy_video_to_video_dir(
+             video_dir=self.video_dir,
+             video_download_dir=self.video_download_dir,
+             do_not_copy=self.do_not_copy,
+             download_worst=self.download_worst,
+             url=self.url,
+             path=self.path
+         )
 
-        self.video_duration = video_duration(self.video_path)
+        self.video_duration = video_duration(path=self.video_path)
 
         FramesExtractor(
             self.video_path,
@@ -263,137 +279,6 @@ class VideoHash:
             + "hexadecimal/binary strings or instance of VideoHash class."
         )
 
-    def _copy_video_to_video_dir(self) -> None:
-        """
-        Copy the video from the path to the video directory.
-
-        Copying avoids issues such as the user or some other
-        process deleting the instance files while we are still
-        processing.
-
-        If instead of the path the uploader specified an url,
-        then download the video and copy the file to video
-        directory.
-
-
-        :return: None
-
-        :rtype: NoneType
-
-        :raises ValueError: If the path supplied by the end user
-                            lacks an extension. E.g. webm, mkv and mp4.
-        """
-        self.video_path: str = ""
-
-        if self.path:
-            # create a copy of the video at self.storage_path
-            match = re.search(r"\.([^.]+$)", self.path)
-
-            if match:
-                extension = match.group(1)
-
-            else:
-                raise ValueError("File name (path) does not have an extension.")
-
-            self.video_path = os.path.join(self.video_dir, (f"video.{extension}"))
-
-            if self.do_not_copy:
-                os.symlink(self.path, self.video_path)
-            else:
-                shutil.copyfile(self.path, self.video_path)
-
-        if self.url:
-
-            Download(
-                self.url,
-                self.video_download_dir,
-                worst=self.download_worst,
-            )
-
-            downloaded_file = get_list_of_all_files_in_dir(self.video_download_dir)[0]
-            match = re.search(r"\.(.*?)$", downloaded_file)
-
-            extension = "mkv"
-
-            if match:
-                extension = match.group(1)
-
-            self.video_path = f"{self.video_dir}video.{extension}"
-
-            if self.do_not_copy:
-                os.symlink(downloaded_file, self.video_path)
-            else:
-                shutil.copyfile(downloaded_file, self.video_path)
-
-    def _create_required_dirs_and_check_for_errors(self) -> None:
-        """
-        Creates important directories before the main processing starts.
-
-        The instance files are stored in these directories, no need to worry
-        about the end user or some other processes interfering with the instance
-        generated files.
-
-
-        :raises DidNotSupplyPathOrUrl: If the user forgot to specify both the
-                                       path and the url. One of them must be
-                                       specified for creating the object.
-
-        :raises ValueError: If user passed both path and url. Only pass
-                            one of them if the file is available on both
-                            then pass the path only.
-
-        :raises StoragePathDoesNotExist: If the storage path specified by the
-                                         user does not exist.
-
-        :return: None
-
-        :rtype: NoneType
-        """
-        if not self.path and not self.url:
-            raise DidNotSupplyPathOrUrl(
-                "You must specify either a path or an URL of the video."
-            )
-
-        if self.path and self.url:
-            raise ValueError("Specify either a path or an URL and NOT both.")
-
-        if not self.storage_path:
-            self.storage_path = create_and_return_temporary_directory()
-        if not does_path_exists(self.storage_path):
-            raise StoragePathDoesNotExist(
-                f"Storage path '{self.storage_path}' does not exist."
-            )
-
-        os_path_sep = os.path.sep
-
-        self.storage_path = os.path.join(
-            self.storage_path, (f"{self.task_uid}{os_path_sep}")
-        )
-
-        self.video_dir = os.path.join(self.storage_path, (f"video{os_path_sep}"))
-        Path(self.video_dir).mkdir(parents=True, exist_ok=True)
-
-        self.video_download_dir = os.path.join(
-            self.storage_path, (f"downloadedvideo{os_path_sep}")
-        )
-        Path(self.video_download_dir).mkdir(parents=True, exist_ok=True)
-
-        self.frames_dir = os.path.join(self.storage_path, (f"frames{os_path_sep}"))
-        Path(self.frames_dir).mkdir(parents=True, exist_ok=True)
-
-        self.tiles_dir = os.path.join(self.storage_path, (f"tiles{os_path_sep}"))
-        Path(self.tiles_dir).mkdir(parents=True, exist_ok=True)
-
-        self.collage_dir = os.path.join(self.storage_path, (f"collage{os_path_sep}"))
-        Path(self.collage_dir).mkdir(parents=True, exist_ok=True)
-
-        self.horizontally_concatenated_image_dir = os.path.join(
-            self.storage_path, (f"horizontally_concatenated_image{os_path_sep}")
-        )
-        Path(self.horizontally_concatenated_image_dir).mkdir(
-            parents=True, exist_ok=True
-        )
-
     def is_similar(self, other: object) -> bool:
         """
         If 'similar_percentage' of bits are similar
@@ -404,10 +289,10 @@ class VideoHash:
         else:
             return False
 
-    def is_diffrent(self, other: object) -> bool:
+    def is_different(self, other: object) -> bool:
         """
         Refer to the is_similar,
-        if not similar then diffrent.
+        if not similar then different.
         """
 
         if not self.is_similar(other):
@@ -435,6 +320,7 @@ class VideoHash:
 
         :rtype: NoneType
         """
+
         directory = self.storage_path
 
         if not self._storage_path:
@@ -444,29 +330,6 @@ class VideoHash:
             )
 
         shutil.rmtree(directory, ignore_errors=True, onerror=None)
-
-    @staticmethod
-    def _get_task_uid() -> str:
-        """
-        Returns an unique task id for the instance. Task id is used to
-        differentiate the instance files from the other unrelated files.
-
-        We want to make sure that only the instance is manipulating the instance files
-        and no other process nor user by accident deletes or edits instance files while
-        we are still processing.
-
-        :return: instance's unique task id.
-
-        :rtype: str
-        """
-        sys_random = random.SystemRandom()
-
-        return "".join(
-            sys_random.choice(
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-            )
-            for _ in range(20)
-        )
 
     def hamming_distance(
         self,
