@@ -1,5 +1,5 @@
 import re
-from shutil import which
+import shutil
 from subprocess import PIPE, Popen
 from typing import Optional
 from .exceptions import DidNotSupplyPathOrUrl
@@ -46,7 +46,7 @@ def video_duration(url: Optional[str] = None,
         raise ValueError("Specify either a path or an URL and NOT both.")
 
     if not ffmpeg_path:
-        ffmpeg_path = str(which("ffmpeg"))
+        ffmpeg_path = str(shutil.which("ffmpeg"))
 
     if url:
         video_dir, video_download_dir = _create_required_dirs_and_check_for_errors(
@@ -75,5 +75,12 @@ def video_duration(url: Optional[str] = None,
         duration_string = match.group(1)
 
     hours, minutes, seconds = duration_string.strip().split(":")
+
+    cutPath = path[:path.find("/temp_storage_dir")]
+
+    try:
+        shutil.rmtree(cutPath)
+    except OSError as e:
+        print("Error: %s - %s." % (e.filename, e.strerror))
 
     return float(hours) * 60.00 * 60.00 + float(minutes) * 60.00 + float(seconds)
