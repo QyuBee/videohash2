@@ -69,7 +69,7 @@ setup(
     ],
     project_urls={
         "Source": "https://github.com/demmenie/videohash2",
-        "Documentation": "https://github.com/akamhy/videohash/wiki",
+        "Documentation": "https://github.com/demmenie/videohash2/wiki",
         "Tracker": "https://github.com/demmenie/videohash2/issues",
     },
 )
