@@ -76,7 +76,7 @@ def video_duration(url: Optional[str] = None,
 
     hours, minutes, seconds = duration_string.strip().split(":")
 
-    if path:
+    if url:
         cutPath = path[:path.find("/temp_storage_dir")]
 
         try:
