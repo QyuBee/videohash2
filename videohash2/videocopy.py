@@ -153,4 +153,4 @@ def _create_required_dirs_and_check_for_errors(
         parents=True, exist_ok=True
     )
 
-    return video_dir, video_download_dir, frames_dir, tiles_dir, collage_dir, horizontally_concatenated_image_dir
+    return storage_path, video_dir, video_download_dir, frames_dir, tiles_dir, collage_dir, horizontally_concatenated_image_dir

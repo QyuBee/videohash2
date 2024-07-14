@@ -79,7 +79,8 @@ class VideoHash:
 
         self.task_uid = _get_task_uid()
 
-        (self.video_dir,
+        (self.storage_path,
+         self.video_dir,
          self.video_download_dir,
          self.frames_dir,
          self.tiles_dir,
